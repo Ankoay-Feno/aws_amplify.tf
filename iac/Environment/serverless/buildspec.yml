@@ -3,15 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd ${var.frontend_dir}
-        - npm ci
+        - echo Skipping pre-build for backend app
     build:
       commands:
-        - npm run build
+        - cd python-app
+        - docker build -t python-app .
   artifacts:
-    baseDirectory: ${var.frontend_dir}/out
+    baseDirectory: /
     files:
       - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
